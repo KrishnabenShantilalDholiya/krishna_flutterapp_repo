@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_2/common/constant.dart';
 import 'package:flutter_application_2/common/model.dart';
 import 'package:flutter_application_2/common/widget.dart';
-import 'package:flutter_application_2/screens/speechtotxt.dart';
+import 'package:flutter_application_2/screens/Llama_model.dart';
 import 'package:http/http.dart' as http;
 
 const backgroundColor = Color(0xff343541);
@@ -95,7 +95,7 @@ class _QueAnsPageState extends State<QueAnsPage> {
                         Padding(
                           padding: const EdgeInsets.only(left: 10.0),
                           child:
-                              appText(title: '@UserName', color: Colors.white),
+                              appText(title: '@Krishna', color: Colors.white),
                         ),
                       ],
                     )
@@ -108,7 +108,7 @@ class _QueAnsPageState extends State<QueAnsPage> {
                 color: Colors.white,
               ),
               title: appText(
-                  title: 'Q&A Page',
+                  title: 'Open AI Model',
                   color: Colors.white,
                   fontSize: 20,
                   fontWeight: FontWeight.w700),
@@ -118,71 +118,12 @@ class _QueAnsPageState extends State<QueAnsPage> {
             ),
             ListTile(
               leading: const Icon(
-                Icons.translate,
-                size: 20,
-                color: Colors.white,
-              ),
-              title: appText(
-                  title: 'Translate Page',
-                  color: Colors.white,
-                  fontSize: 20,
-                  fontWeight: FontWeight.w700),
-              onTap: () {
-                //Navigator.pop(context);
-                // Navigator.push(
-                //   context,
-                //   MaterialPageRoute(
-                //       builder: (context) => const Translatepage()),
-                // );
-              },
-            ),
-            ListTile(
-              leading: const Icon(
                 Icons.chat,
                 size: 20,
                 color: Colors.white,
               ),
               title: appText(
-                  title: 'Chat Page',
-                  color: Colors.white,
-                  fontSize: 20,
-                  fontWeight: FontWeight.w700),
-              onTap: () {
-                //Navigator.pop(context);
-                // Navigator.push(
-                //   context,
-                //   MaterialPageRoute(builder: (context) => const Chatpage()),
-                // );
-              },
-            ),
-            ListTile(
-              leading: const Icon(
-                Icons.chat,
-                size: 20,
-                color: Colors.white,
-              ),
-              title: appText(
-                  title: 'Friend Chat Page',
-                  color: Colors.white,
-                  fontSize: 20,
-                  fontWeight: FontWeight.w700),
-              onTap: () {
-                Navigator.pop(context);
-                // Navigator.push(
-                //   context,
-                //   MaterialPageRoute(
-                //       builder: (context) => const FriendChatpage()),
-                // );
-              },
-            ),
-            ListTile(
-              leading: const Icon(
-                Icons.mic,
-                size: 20,
-                color: Colors.white,
-              ),
-              title: appText(
-                  title: 'Voice Assistant',
+                  title: 'Llama Model',
                   color: Colors.white,
                   fontSize: 20,
                   fontWeight: FontWeight.w700),
@@ -190,7 +131,7 @@ class _QueAnsPageState extends State<QueAnsPage> {
                 Navigator.pop(context);
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => const speechtotxt()),
+                  MaterialPageRoute(builder: (context) => const LlamaModel()),
                 );
               },
             ),
