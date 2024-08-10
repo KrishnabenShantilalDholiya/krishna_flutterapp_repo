@@ -16,14 +16,14 @@ class LlamaModel extends StatefulWidget {
 
 Future<String> generateResponse(String prompt) async {
   var url = Uri.parse(
-      'http://localhost:5000/predict'); // Ensure this matches the server's address
-  final response = await http.post(
-    url,
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: json.encode({'input': prompt}),
-  );
+      'http://127.0.0.1:5000/generate'); // Replace with your server address
+  final response = await http
+      .post(
+        url,
+        headers: {'Content-Type': 'application/json'},
+        body: json.encode({'prompt': prompt}),
+      )
+      .timeout(const Duration(seconds: 30));
 
   if (response.statusCode == 200) {
     final responseJson = jsonDecode(response.body);
@@ -32,37 +32,6 @@ Future<String> generateResponse(String prompt) async {
     throw Exception('Failed to generate response');
   }
 }
-
-// Future<String> generateResponse(String prompt) async {
-//   const apiKey = apiSecretKey;
-
-//   var url = Uri.https("api.openai.com", "/v1/chat/completions");
-//   final response = await http.post(
-//     url,
-//     headers: {
-//       'Content-Type': 'application/json',
-//       "Authorization": "Bearer $apiKey"
-//     },
-//     body: json.encode({
-//       "model": "gpt-4", // Use the updated GPT-4 model
-//       "messages": [
-//         {"role": "system", "content": "You are a helpful assistant."},
-//         {"role": "user", "content": prompt}
-//       ]
-//     }),
-//   );
-// // Do something with the response
-//   if (response.statusCode == 200) {
-//     final responseJson = jsonDecode(response.body);
-//     return responseJson['choices'][0]['message']['content'];
-//   } else {
-//     throw Exception('Failed to generate response');
-//   }
-
-//   // Map<String, dynamic> newresponse = jsonDecode(response.body);
-
-//   // return newresponse['choices'][0]['text'];
-// }
 
 class _LlamaModelState extends State<LlamaModel> {
   final _textController = TextEditingController();
@@ -166,12 +135,13 @@ class _LlamaModelState extends State<LlamaModel> {
       appBar: AppBar(
         centerTitle: true,
         toolbarHeight: 70,
-        title: const Padding(
-          padding: EdgeInsets.all(8.0),
-          child: Text(
-            "Ask a Question",
-            maxLines: 2,
-            textAlign: TextAlign.center,
+        title: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Container(
+            child: appText(
+                title: "Llama Model",
+                color: Colors.white,
+                textAlign: TextAlign.center),
           ),
         ),
         backgroundColor: botBackgroundColor,

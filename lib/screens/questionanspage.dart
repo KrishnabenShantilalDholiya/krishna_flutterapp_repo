@@ -144,12 +144,13 @@ class _QueAnsPageState extends State<QueAnsPage> {
       appBar: AppBar(
         centerTitle: true,
         toolbarHeight: 70,
-        title: const Padding(
-          padding: EdgeInsets.all(8.0),
-          child: Text(
-            "Ask a Question",
-            maxLines: 2,
-            textAlign: TextAlign.center,
+        title: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Container(
+            child: appText(
+                title: "Open AI Model",
+                color: Colors.white,
+                textAlign: TextAlign.center),
           ),
         ),
         backgroundColor: botBackgroundColor,
