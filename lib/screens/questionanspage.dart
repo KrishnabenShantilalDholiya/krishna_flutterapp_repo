@@ -123,7 +123,7 @@ class _QueAnsPageState extends State<QueAnsPage> {
                 color: Colors.white,
               ),
               title: appText(
-                  title: 'Llama Model',
+                  title: 'Open-source Models',
                   color: Colors.white,
                   fontSize: 20,
                   fontWeight: FontWeight.w700),

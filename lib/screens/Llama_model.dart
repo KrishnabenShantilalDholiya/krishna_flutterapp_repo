@@ -14,17 +14,19 @@ class LlamaModel extends StatefulWidget {
   State<LlamaModel> createState() => _LlamaModelState();
 }
 
-Future<String> generateResponse(String prompt) async {
+Future<String> generateResponse(String prompt, String selectedModel) async {
   var url = Uri.parse(
       'http://127.0.0.1:5000/generate'); // Replace with your server address
-  final response = await http
-      .post(
-        url,
-        headers: {'Content-Type': 'application/json'},
-        body: json.encode({'prompt': prompt}),
-      )
-      .timeout(const Duration(seconds: 30));
-
+  final response = await http.post(
+    url,
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: json.encode({
+      'prompt': prompt,
+      'model': selectedModel,
+    }),
+  );
   if (response.statusCode == 200) {
     final responseJson = jsonDecode(response.body);
     return responseJson['response'];
@@ -38,6 +40,7 @@ class _LlamaModelState extends State<LlamaModel> {
   final _scrollController = ScrollController();
   final List<ChatMessage> _messages = [];
   late bool isLoading;
+  String selectedModel = "facebook/opt-125m";
 
   @override
   void initState() {
@@ -114,7 +117,7 @@ class _LlamaModelState extends State<LlamaModel> {
                 color: Colors.white,
               ),
               title: appText(
-                  title: 'Llama Model',
+                  title: 'Open-source Models',
                   color: Colors.white,
                   fontSize: 20,
                   fontWeight: FontWeight.w700),
@@ -139,7 +142,7 @@ class _LlamaModelState extends State<LlamaModel> {
           padding: const EdgeInsets.all(8.0),
           child: Container(
             child: appText(
-                title: "Llama Model",
+                title: "Open-source Models",
                 color: Colors.white,
                 textAlign: TextAlign.center),
           ),
@@ -150,6 +153,22 @@ class _LlamaModelState extends State<LlamaModel> {
       body: SafeArea(
         child: Column(
           children: [
+            DropdownButton<String>(
+              value: selectedModel,
+              items: <String>['facebook/opt-125m', 'bigscience/bloom-560m']
+                  .map<DropdownMenuItem<String>>((String value) {
+                return DropdownMenuItem<String>(
+                  value: value,
+                  child:
+                      Text(value, style: const TextStyle(color: Colors.grey)),
+                );
+              }).toList(),
+              onChanged: (String? newValue) {
+                setState(() {
+                  selectedModel = newValue!;
+                });
+              },
+            ),
             Expanded(
               child: _buildList(),
             ),
@@ -203,12 +222,13 @@ class _LlamaModelState extends State<LlamaModel> {
             _textController.clear();
             Future.delayed(const Duration(milliseconds: 50))
                 .then((_) => _scrollDown());
-            generateResponse(input).then((value) {
+            generateResponse(input, selectedModel).then((value) {
               setState(() {
                 isLoading = false;
                 _messages.add(
                   ChatMessage(
                     text: value,
+                    name: selectedModel,
                     chatMessageType: ChatMessageType.bot,
                   ),
                 );
@@ -292,12 +312,12 @@ class ChatMessageWidget extends StatelessWidget {
                     backgroundColor: const Color.fromRGBO(16, 163, 127, 1),
                     radius: 25,
                     child: Image.asset(
-                      'assets/bot1.png',
+                      'assets/meta.png',
                       color: Colors.white,
                       //scale: 1.5,
                       height: 50,
                       width: 50,
-                      fit: BoxFit.cover,
+                      fit: BoxFit.fill,
                     ),
                   ),
                 )
