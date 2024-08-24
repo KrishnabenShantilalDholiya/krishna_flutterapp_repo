@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+
 # krishna_flutterapp_repo (flutter_application_2)
 
 A new Flutter project.
@@ -29,6 +30,7 @@ samples, guidance on mobile development, and a full API reference.
 
 ## License
 [Specify the license under which your project is distributed.]
-=======
+
 # krishna_flutterapp_repo
 >>>>>>> origin/main
+
