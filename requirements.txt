@@ -1,0 +1,27 @@
+  
+  --> project requirements packages
+  
+  sdk '>=3.4.0 <4.0.0'
+  flutter
+  cupertino_icons ^1.0.6
+  http ^1.2.1
+  get ^4.6.6
+  shared_preferences ^2.0.17
+  fluttertoast ^8.1.2
+  clipboard ^0.1.3
+  share_plus ^6.3.0
+  avatar_glow ^2.0.2
+  speech_to_text ^6.1.1
+  flutter_test
+  flutter_lints ^3.0.0
+  uses-material-design true
+  assets
+-->
+
+Configuration of API Keys and Tokens
+
+Before initiating this project, it is imperative to secure two fundamental credentials: 
+the OpenAI API key and the Hugging Face token. To obtain the OpenAI API key, one must register at openai.com, generate an API key within the account settings, and incorporate it into the environment variables labeled as OPENAI_API_KEY. 
+Regarding the Hugging Face token, which is imperative for utilizing their models and services, an account must be created at huggingface.co, a User Access Token must be generated in the account settings, and this should be designated as an environment variable identified as HUGGINGFACE_TOKEN. 
+These credentials are vital for validating your requests to both platforms and ensuring the seamless functionality of the project. 
+It is important to maintain the security of these tokens and to refrain from disclosing them publicly or including them in version control.
