@@ -309,14 +309,14 @@ class ChatMessageWidget extends StatelessWidget {
               ? Container(
                   margin: const EdgeInsets.only(right: 16.0),
                   child: CircleAvatar(
-                    backgroundColor: const Color.fromRGBO(16, 163, 127, 1),
+                    backgroundColor: Colors.white,
                     radius: 25,
                     child: Image.asset(
                       'assets/meta.png',
-                      color: Colors.white,
+                      // color: Colors.white,
                       //scale: 1.5,
-                      height: 50,
-                      width: 50,
+                      height: 30,
+                      width: 30,
                       fit: BoxFit.fill,
                     ),
                   ),

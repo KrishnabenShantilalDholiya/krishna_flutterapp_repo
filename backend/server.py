@@ -137,7 +137,7 @@ models = {
     }
 }
 
-token = "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"  # Replace with your actual token
+token = "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"  # token from hugging face
 
 # Load the models and tokenizers
 for model_name in models:
